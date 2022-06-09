@@ -18,6 +18,13 @@ defmodule MorkBorgWeb.Router do
     pipe_through :browser
 
     get "/", PageController, :index
+
+    live "/characters", CharacterLive.Index, :index
+    live "/characters/new", CharacterLive.Index, :new
+    live "/characters/:id/edit", CharacterLive.Index, :edit
+
+    live "/characters/:id", CharacterLive.Show, :show
+    live "/characters/:id/show/edit", CharacterLive.Show, :edit
   end
 
   # Other scopes may use custom stacks.

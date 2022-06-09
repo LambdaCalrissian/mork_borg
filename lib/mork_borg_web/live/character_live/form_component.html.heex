@@ -1,0 +1,52 @@
+<div>
+  <h2><%= @title %></h2>
+
+  <.form
+    let={f}
+    for={@changeset}
+    id="character-form"
+    phx-target={@myself}
+    phx-change="validate"
+    phx-submit="save">
+  
+    <%= label f, :name %>
+    <%= text_input f, :name %>
+    <%= error_tag f, :name %>
+  
+    <%= label f, :description %>
+    <%= text_input f, :description %>
+    <%= error_tag f, :description %>
+  
+    <%= label f, :hit_points_current %>
+    <%= number_input f, :hit_points_current %>
+    <%= error_tag f, :hit_points_current %>
+  
+    <%= label f, :hit_points_max %>
+    <%= number_input f, :hit_points_max %>
+    <%= error_tag f, :hit_points_max %>
+  
+    <%= label f, :strength %>
+    <%= number_input f, :strength %>
+    <%= error_tag f, :strength %>
+  
+    <%= label f, :agility %>
+    <%= number_input f, :agility %>
+    <%= error_tag f, :agility %>
+  
+    <%= label f, :presence %>
+    <%= number_input f, :presence %>
+    <%= error_tag f, :presence %>
+  
+    <%= label f, :toughness %>
+    <%= number_input f, :toughness %>
+    <%= error_tag f, :toughness %>
+  
+    <%= label f, :omens %>
+    <%= number_input f, :omens %>
+    <%= error_tag f, :omens %>
+  
+    <div>
+      <%= submit "Save", phx_disable_with: "Saving..." %>
+    </div>
+  </.form>
+</div>

@@ -1,0 +1,55 @@
+<h1>Listing Characters</h1>
+
+<%= if @live_action in [:new, :edit] do %>
+  <.modal return_to={Routes.character_index_path(@socket, :index)}>
+    <.live_component
+      module={MorkBorgWeb.CharacterLive.FormComponent}
+      id={@character.id || :new}
+      title={@page_title}
+      action={@live_action}
+      character={@character}
+      return_to={Routes.character_index_path(@socket, :index)}
+    />
+  </.modal>
+<% end %>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Hit points current</th>
+      <th>Hit points max</th>
+      <th>Strength</th>
+      <th>Agility</th>
+      <th>Presence</th>
+      <th>Toughness</th>
+      <th>Omens</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody id="characters">
+    <%= for character <- @characters do %>
+      <tr id={"character-#{character.id}"}>
+        <td><%= character.name %></td>
+        <td><%= character.description %></td>
+        <td><%= character.hit_points_current %></td>
+        <td><%= character.hit_points_max %></td>
+        <td><%= character.strength %></td>
+        <td><%= character.agility %></td>
+        <td><%= character.presence %></td>
+        <td><%= character.toughness %></td>
+        <td><%= character.omens %></td>
+
+        <td>
+          <span><%= live_redirect "Show", to: Routes.character_show_path(@socket, :show, character) %></span>
+          <span><%= live_patch "Edit", to: Routes.character_index_path(@socket, :edit, character) %></span>
+          <span><%= link "Delete", to: "#", phx_click: "delete", phx_value_id: character.id, data: [confirm: "Are you sure?"] %></span>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<span><%= live_patch "New Character", to: Routes.character_index_path(@socket, :new) %></span>
