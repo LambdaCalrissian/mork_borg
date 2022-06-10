@@ -1,0 +1,36 @@
+<h1>Show Weapon</h1>
+
+<%= if @live_action in [:edit] do %>
+  <.modal return_to={Routes.weapon_show_path(@socket, :show, @weapon)}>
+    <.live_component
+      module={MorkBorgWeb.WeaponLive.FormComponent}
+      id={@weapon.id}
+      title={@page_title}
+      action={@live_action}
+      weapon={@weapon}
+      return_to={Routes.weapon_show_path(@socket, :show, @weapon)}
+    />
+  </.modal>
+<% end %>
+
+<ul>
+
+  <li>
+    <strong>Name:</strong>
+    <%= @weapon.name %>
+  </li>
+
+  <li>
+    <strong>Description:</strong>
+    <%= @weapon.description %>
+  </li>
+
+  <li>
+    <strong>Damage:</strong>
+    <%= @weapon.damage %>
+  </li>
+
+</ul>
+
+<span><%= live_patch "Edit", to: Routes.weapon_show_path(@socket, :edit, @weapon), class: "button" %></span> |
+<span><%= live_redirect "Back", to: Routes.weapon_index_path(@socket, :index) %></span>

@@ -25,6 +25,13 @@ defmodule MorkBorgWeb.Router do
 
     live "/characters/:id", CharacterLive.Show, :show
     live "/characters/:id/show/edit", CharacterLive.Show, :edit
+
+    live "/weapons", WeaponLive.Index, :index
+    live "/weapons/new", WeaponLive.Index, :new
+    live "/weapons/:id/edit", WeaponLive.Index, :edit
+
+    live "/weapons/:id", WeaponLive.Show, :show
+    live "/weapons/:id/show/edit", WeaponLive.Show, :edit
   end
 
   # Other scopes may use custom stacks.
