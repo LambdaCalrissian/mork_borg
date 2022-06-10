@@ -32,3 +32,9 @@ mork_borg-*.tar
 npm-debug.log
 /assets/node_modules/
 
+/mork_borg.sqlite
+/*.sqlite-shm
+/*.sqlite-wal
+/mork_borg_test
+/mork_borg_test-shm
+/mork_borg_test-wal
