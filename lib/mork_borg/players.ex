@@ -7,6 +7,7 @@ defmodule MorkBorg.Players do
   alias MorkBorg.Repo
 
   alias MorkBorg.Players.Character
+  alias MorkBorg.Weapons.Weapon
 
   @doc """
   Returns the list of characters.
@@ -35,7 +36,10 @@ defmodule MorkBorg.Players do
       ** (Ecto.NoResultsError)
 
   """
-  def get_character!(id), do: Repo.get!(Character, id)
+  def get_character!(id) do
+    Repo.get!(Character, id)
+    |> Repo.preload(:weapons)
+  end
 
   @doc """
   Creates a character.
