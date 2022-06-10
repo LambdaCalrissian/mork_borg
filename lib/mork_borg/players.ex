@@ -7,7 +7,6 @@ defmodule MorkBorg.Players do
   alias MorkBorg.Repo
 
   alias MorkBorg.Players.Character
-  alias MorkBorg.Weapons.Weapon
 
   @doc """
   Returns the list of characters.
@@ -54,9 +53,9 @@ defmodule MorkBorg.Players do
 
   """
   def create_character(attrs \\ %{}) do
-    %Character{}
-    |> Character.changeset(attrs)
-    |> Repo.insert()
+      %Character{}
+      |> Character.changeset(attrs)
+      |> Repo.insert()
   end
 
   @doc """
