@@ -2,6 +2,7 @@ defmodule MorkBorgWeb.CharacterLive.Show do
   use MorkBorgWeb, :live_view
 
   alias MorkBorg.Players
+  import MorkBorgWeb.WeaponLive.WeaponComponent
 
   @impl true
   def mount(_params, _session, socket) do

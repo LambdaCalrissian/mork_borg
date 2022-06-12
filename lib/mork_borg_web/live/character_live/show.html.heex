@@ -62,5 +62,11 @@
 
 </ul>
 
+<h2>Weapons</h2>
+<%= for weapon <- @character.weapons do %>
+<.display_weapon weapon={weapon} />
+<% end %>
+
+
 <span><%= live_patch "Edit", to: Routes.character_show_path(@socket, :edit, @character), class: "button" %></span> |
 <span><%= live_redirect "Back", to: Routes.character_index_path(@socket, :index) %></span>
