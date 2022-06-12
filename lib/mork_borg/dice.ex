@@ -7,6 +7,6 @@ defmodule MorkBorg.Dice do
 
   def roll(sides) do
     %Die{sides: sides}
-    |> Die.roll
+    |> Die.roll()
   end
 end

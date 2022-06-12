@@ -1,72 +1,71 @@
-<h1>Show Character</h1>
-
 <%= if @live_action in [:edit] do %>
-  <.modal return_to={Routes.character_show_path(@socket, :show, @character)}>
-    <.live_component
-      module={MorkBorgWeb.CharacterLive.FormComponent}
-      id={@character.id}
-      title={@page_title}
-      action={@live_action}
-      character={@character}
-      return_to={Routes.character_show_path(@socket, :show, @character)}
+<.modal return_to={Routes.character_show_path(@socket, :show, @character)}>
+  <.live_component
+    module={MorkBorgWeb.CharacterLive.FormComponent}
+    id={@character.id}
+    title={@page_title}
+    action={@live_action}
+    character={@character}
+    return_to={Routes.character_show_path(@socket, :show, @character)}
     />
-  </.modal>
+</.modal>
 <% end %>
 
-<ul>
+<div class="p-6 max-w-sm m-6 bg-white rounded-xl shadow-lg flex flex-col items-center space-x-4">
+  <div class="flex flex-row w-full justify-between">
+    <div class="flex flex-col">
+      <h1 class="text-3xl font-bold self-start">
+        <%= @character.name %>
+      </h1>
 
-  <li>
-    <strong>Name:</strong>
-    <%= @character.name %>
-  </li>
+      <p class="text-sm font-semibold text-slate-500">
+        <%= @character.description %>
+      </p>
+    </div>
 
-  <li>
-    <strong>Description:</strong>
-    <%= @character.description %>
-  </li>
+    <div class="flex flex-col h-16 w-16 bg-rose-50 border-black rounded-full justify-center content-center shadow-inner">
+      <p class="border-b border-slate-300 text-center">
+        <%= @character.hit_points_current %>
+      </p>
+      <p class="text-center">
+        <%= @character.hit_points_max %>
+      </p>
+    </div>
+  </div>
 
-  <li>
-    <strong>Hit points current:</strong>
-    <%= @character.hit_points_current %>
-  </li>
+  <div class="text-sm flex flex-row border p-2 m-2">
+    <div class="flex flex-row gap-x-8 ">
+      <div class="flex flex-col">
+        <p class="font-bold">Strength</p>
+        <p class="font-bold">Agility</p>
+      </div>
+      <div class="flex flex-col">
+        <p><%= @character.strength %></p>
+        <p><%= @character.agility %></p>
+      </div>
+      <div class="flex flex-col">
+        <p class="font-bold">Presence</p>
+        <p class="font-bold">Toughness</p>
+      </div>
+      <div class="flex flex-col">
+        <p><%= @character.presence %></p>
+        <p><%= @character.toughness %></p>
+      </div>
+    </div>
+  </div>
 
-  <li>
-    <strong>Hit points max:</strong>
-    <%= @character.hit_points_max %>
-  </li>
-
-  <li>
-    <strong>Strength:</strong>
-    <%= @character.strength %>
-  </li>
-
-  <li>
-    <strong>Agility:</strong>
-    <%= @character.agility %>
-  </li>
-
-  <li>
-    <strong>Presence:</strong>
-    <%= @character.presence %>
-  </li>
-
-  <li>
-    <strong>Toughness:</strong>
-    <%= @character.toughness %>
-  </li>
-
-  <li>
-    <strong>Omens:</strong>
+  <div class="flex flex-row gap-x-8">
+    <span class="font-bold">Omens</span>
     <%= @character.omens %>
-  </li>
+  </div>
 
-</ul>
+  <div class="border-t w-full mt-8 p-4">
+  <h2 class="text-lg font-semibold">Weapons</h2>
+    <%= for weapon <- @character.weapons do %>
+      <.display_weapon weapon={weapon} />
+    <% end %>
+  </div>
+</div>
 
-<h2>Weapons</h2>
-<%= for weapon <- @character.weapons do %>
-<.display_weapon weapon={weapon} />
-<% end %>
-
-
-<span><%= live_patch "Edit", to: Routes.character_show_path(@socket, :edit, @character), class: "button" %></span> |
-<span><%= live_redirect "Back", to: Routes.character_index_path(@socket, :index) %></span>
+<span class="px-4 py-1 text-sm text-red-600 font-semibold rounded-full border border-red-200 hover:text-white hover:bg-red-600 hover:border-transparent focus:outline-none focus:ring-2 focus:ring-red-600 focus:ring-offset-2"><%= live_patch "Edit", to: Routes.character_show_path(@socket, :edit, @character), class: "button" %></span>
+<span class="px-4 py-1 text-sm text-red-600 font-semibold rounded-full border border-red-200 hover:text-white hover:bg-red-600 hover:border-transparent focus:outline-none focus:ring-2 focus:ring-red-600 focus:ring-offset-2"><%= live_redirect "Back", to: Routes.character_index_path(@socket, :index) %></span>

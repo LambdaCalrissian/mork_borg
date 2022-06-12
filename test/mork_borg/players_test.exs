@@ -9,7 +9,17 @@ defmodule MorkBorg.PlayersTest do
     import MorkBorg.PlayersFixtures
     import MorkBorg.WeaponsFixtures
 
-    @invalid_attrs %{agility: nil, description: nil, hit_points_current: nil, hit_points_max: nil, name: nil, omens: nil, presence: nil, strength: nil, toughness: nil}
+    @invalid_attrs %{
+      agility: nil,
+      description: nil,
+      hit_points_current: nil,
+      hit_points_max: nil,
+      name: nil,
+      omens: nil,
+      presence: nil,
+      strength: nil,
+      toughness: nil
+    }
 
     test "list_characters/0 returns all characters" do
       character = character_fixture()
@@ -29,7 +39,17 @@ defmodule MorkBorg.PlayersTest do
     end
 
     test "create_character/1 with valid data creates a character" do
-      valid_attrs = %{agility: 42, description: "some description", hit_points_current: 42, hit_points_max: 42, name: "some name", omens: 42, presence: 42, strength: 42, toughness: 42}
+      valid_attrs = %{
+        agility: 42,
+        description: "some description",
+        hit_points_current: 42,
+        hit_points_max: 42,
+        name: "some name",
+        omens: 42,
+        presence: 42,
+        strength: 42,
+        toughness: 42
+      }
 
       assert {:ok, %Character{} = character} = Players.create_character(valid_attrs)
       assert character.agility == 42
@@ -49,7 +69,18 @@ defmodule MorkBorg.PlayersTest do
 
     test "update_character/2 with valid data updates the character" do
       character = character_fixture()
-      update_attrs = %{agility: 43, description: "some updated description", hit_points_current: 43, hit_points_max: 43, name: "some updated name", omens: 43, presence: 43, strength: 43, toughness: 43}
+
+      update_attrs = %{
+        agility: 43,
+        description: "some updated description",
+        hit_points_current: 43,
+        hit_points_max: 43,
+        name: "some updated name",
+        omens: 43,
+        presence: 43,
+        strength: 43,
+        toughness: 43
+      }
 
       assert {:ok, %Character{} = character} = Players.update_character(character, update_attrs)
       assert character.agility == 43

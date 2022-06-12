@@ -3,24 +3,17 @@ defmodule MorkBorgWeb.WeaponLive.WeaponComponent do
 
   def display_weapon(assigns) do
     ~H"""
-    <ul>
-
-    <li>
-    <strong>Name:</strong>
+    <div class="p-6 max-w-sm mx-auto bg-white rounded-xl shadow-lg flex items-center space-x-4 justify-between">
+    <h1 class="text-xl text-black text-semibold">
     <%= @weapon.name %>
-    </li>
-
-    <li>
-    <strong>Description:</strong>
+    </h1>
+    <p>
     <%= @weapon.description %>
-    </li>
-
-    <li>
-    <strong>Damage:</strong>
+    </p>
+    <p>
     <%= @weapon.damage %>
-    </li>
-
-    </ul>
+    </p>
+    </div>
     """
   end
 end

@@ -11,16 +11,16 @@ defmodule MorkBorg.Weapons do
   alias MorkBorg.Dice
 
   @starter_weapons %{
-    1  => %Weapon{name: "Femur", damage: 4},
-    2  => %Weapon{name: "Staff", damage: 4},
-    3  => %Weapon{name: "Shortsword", damage: 4},
-    4  => %Weapon{name: "Knife", damage: 4},
-    5  => %Weapon{name: "Warhammer", damage: 6},
-    6  => %Weapon{name: "Sword", damage: 6},
-    7  => %Weapon{name: "Bow", damage: 6},
-    8  => %Weapon{name: "Flail", damage: 8},
-    9  => %Weapon{name: "Crossbow", damage: 8},
-    10 => %Weapon{name: "Zweihander", damage: 10},
+    1 => %Weapon{name: "Femur", damage: 4},
+    2 => %Weapon{name: "Staff", damage: 4},
+    3 => %Weapon{name: "Shortsword", damage: 4},
+    4 => %Weapon{name: "Knife", damage: 4},
+    5 => %Weapon{name: "Warhammer", damage: 6},
+    6 => %Weapon{name: "Sword", damage: 6},
+    7 => %Weapon{name: "Bow", damage: 6},
+    8 => %Weapon{name: "Flail", damage: 8},
+    9 => %Weapon{name: "Crossbow", damage: 8},
+    10 => %Weapon{name: "Zweihander", damage: 10}
   }
 
   @doc """
