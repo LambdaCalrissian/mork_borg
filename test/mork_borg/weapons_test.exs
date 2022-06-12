@@ -35,7 +35,12 @@ defmodule MorkBorg.WeaponsTest do
 
     test "update_weapon/2 with valid data updates the weapon" do
       weapon = weapon_fixture()
-      update_attrs = %{damage: 43, description: "some updated description", name: "some updated name"}
+
+      update_attrs = %{
+        damage: 43,
+        description: "some updated description",
+        name: "some updated name"
+      }
 
       assert {:ok, %Weapon{} = weapon} = Weapons.update_weapon(weapon, update_attrs)
       assert weapon.damage == 43

@@ -4,9 +4,39 @@ defmodule MorkBorgWeb.CharacterLiveTest do
   import Phoenix.LiveViewTest
   import MorkBorg.PlayersFixtures
 
-  @create_attrs %{agility: 42, description: "some description", hit_points_current: 42, hit_points_max: 42, name: "some name", omens: 42, presence: 42, strength: 42, toughness: 42}
-  @update_attrs %{agility: 43, description: "some updated description", hit_points_current: 43, hit_points_max: 43, name: "some updated name", omens: 43, presence: 43, strength: 43, toughness: 43}
-  @invalid_attrs %{agility: nil, description: nil, hit_points_current: nil, hit_points_max: nil, name: nil, omens: nil, presence: nil, strength: nil, toughness: nil}
+  @create_attrs %{
+    agility: 42,
+    description: "some description",
+    hit_points_current: 42,
+    hit_points_max: 42,
+    name: "some name",
+    omens: 42,
+    presence: 42,
+    strength: 42,
+    toughness: 42
+  }
+  @update_attrs %{
+    agility: 43,
+    description: "some updated description",
+    hit_points_current: 43,
+    hit_points_max: 43,
+    name: "some updated name",
+    omens: 43,
+    presence: 43,
+    strength: 43,
+    toughness: 43
+  }
+  @invalid_attrs %{
+    agility: nil,
+    description: nil,
+    hit_points_current: nil,
+    hit_points_max: nil,
+    name: nil,
+    omens: nil,
+    presence: nil,
+    strength: nil,
+    toughness: nil
+  }
 
   defp create_character(_) do
     character = character_fixture()

@@ -23,7 +23,26 @@ defmodule MorkBorg.Players.Character do
   @doc false
   def changeset(character, attrs) do
     character
-    |> cast(attrs, [:name, :description, :hit_points_current, :hit_points_max, :strength, :agility, :presence, :toughness, :omens])
-    |> validate_required([:name, :hit_points_current, :hit_points_max, :strength, :agility, :presence, :toughness, :omens])
+    |> cast(attrs, [
+      :name,
+      :description,
+      :hit_points_current,
+      :hit_points_max,
+      :strength,
+      :agility,
+      :presence,
+      :toughness,
+      :omens
+    ])
+    |> validate_required([
+      :name,
+      :hit_points_current,
+      :hit_points_max,
+      :strength,
+      :agility,
+      :presence,
+      :toughness,
+      :omens
+    ])
   end
 end

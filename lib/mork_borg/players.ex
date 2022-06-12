@@ -53,9 +53,9 @@ defmodule MorkBorg.Players do
 
   """
   def create_character(attrs \\ %{}) do
-      %Character{}
-      |> Character.changeset(attrs)
-      |> Repo.insert()
+    %Character{}
+    |> Character.changeset(attrs)
+    |> Repo.insert()
   end
 
   @doc """
