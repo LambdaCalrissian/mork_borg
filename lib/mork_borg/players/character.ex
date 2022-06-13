@@ -3,6 +3,7 @@ defmodule MorkBorg.Players.Character do
   import Ecto.Changeset
 
   alias MorkBorg.Weapons.Weapon
+  alias MorkBorg.Inventory.Item
 
   schema "characters" do
     field :agility, :integer
@@ -16,6 +17,7 @@ defmodule MorkBorg.Players.Character do
     field :toughness, :integer
 
     has_many :weapons, Weapon
+    has_many :items, Item
 
     timestamps()
   end

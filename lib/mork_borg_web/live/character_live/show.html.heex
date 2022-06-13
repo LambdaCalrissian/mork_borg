@@ -11,6 +11,11 @@
 </.modal>
 <% end %>
 
+<div class="flex flex-row justify-between">
+<span class="px-4 py-1 text-sm text-red-600 font-semibold rounded-full border border-red-200 hover:text-white hover:bg-red-600 hover:border-transparent focus:outline-none focus:ring-2 focus:ring-red-600 focus:ring-offset-2"><%= live_redirect "Back", to: Routes.character_index_path(@socket, :index) %></span>
+<span class="px-4 py-1 text-sm text-red-600 font-semibold rounded-full border border-red-200 hover:text-white hover:bg-red-600 hover:border-transparent focus:outline-none focus:ring-2 focus:ring-red-600 focus:ring-offset-2"><%= live_patch "Edit", to: Routes.character_show_path(@socket, :edit, @character), class: "button" %></span>
+</div>
+
 <div class="p-6 max-w-sm m-6 bg-white rounded-xl shadow-lg flex flex-col items-center space-x-4">
   <div class="flex flex-row w-full justify-between">
     <div class="flex flex-col">
@@ -18,7 +23,7 @@
         <%= @character.name %>
       </h1>
 
-      <p class="text-sm font-semibold text-slate-500">
+      <p class="text-sm font-light">
         <%= @character.description %>
       </p>
     </div>
@@ -65,7 +70,11 @@
       <.display_weapon weapon={weapon} />
     <% end %>
   </div>
-</div>
 
-<span class="px-4 py-1 text-sm text-red-600 font-semibold rounded-full border border-red-200 hover:text-white hover:bg-red-600 hover:border-transparent focus:outline-none focus:ring-2 focus:ring-red-600 focus:ring-offset-2"><%= live_patch "Edit", to: Routes.character_show_path(@socket, :edit, @character), class: "button" %></span>
-<span class="px-4 py-1 text-sm text-red-600 font-semibold rounded-full border border-red-200 hover:text-white hover:bg-red-600 hover:border-transparent focus:outline-none focus:ring-2 focus:ring-red-600 focus:ring-offset-2"><%= live_redirect "Back", to: Routes.character_index_path(@socket, :index) %></span>
+  <div class="border-t w-full mt-8 p-4">
+  <h2 class="text-lg font-semibold">Items</h2>
+    <%= for item <- @character.items do %>
+      <.display_item item={item} />
+    <% end %>
+  </div>
+</div>
