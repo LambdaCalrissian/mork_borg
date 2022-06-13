@@ -19,6 +19,5 @@ defmodule MorkBorg.Weapons.Weapon do
     weapon
     |> cast(attrs, [:name, :description, :damage])
     |> validate_required([:name, :damage])
-    |> cast_assoc(:character)
   end
 end

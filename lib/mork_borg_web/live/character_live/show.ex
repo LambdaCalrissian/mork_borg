@@ -3,6 +3,7 @@ defmodule MorkBorgWeb.CharacterLive.Show do
 
   alias MorkBorg.Players
   import MorkBorgWeb.WeaponLive.WeaponComponent
+  import MorkBorgWeb.ItemLive.ItemComponent
 
   @impl true
   def mount(_params, _session, socket) do

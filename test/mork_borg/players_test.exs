@@ -27,7 +27,7 @@ defmodule MorkBorg.PlayersTest do
     end
 
     test "get_character!/1 returns the character with given id" do
-      character = %{character_fixture() | weapons: []}
+      character = %{character_fixture() | weapons: [], items: []}
       assert Players.get_character!(character.id) == character
     end
 
@@ -95,7 +95,7 @@ defmodule MorkBorg.PlayersTest do
     end
 
     test "update_character/2 with invalid data returns error changeset" do
-      character = %{character_fixture() | weapons: []}
+      character = %{character_fixture() | weapons: [], items: []}
       assert {:error, %Ecto.Changeset{}} = Players.update_character(character, @invalid_attrs)
       assert character == Players.get_character!(character.id)
     end

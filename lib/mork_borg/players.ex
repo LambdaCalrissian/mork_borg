@@ -38,6 +38,7 @@ defmodule MorkBorg.Players do
   def get_character!(id) do
     Repo.get!(Character, id)
     |> Repo.preload(:weapons)
+    |> Repo.preload(:items)
   end
 
   @doc """
