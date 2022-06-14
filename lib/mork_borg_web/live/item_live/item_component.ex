@@ -3,7 +3,7 @@ defmodule MorkBorgWeb.ItemLive.ItemComponent do
 
   def display_item(assigns) do
     ~H"""
-    <div class="p-4 m-4 max-w-sm mx-auto bg-white rounded-xl shadow-lg">
+    <div class="p-4 m-4 max-w-sm mx-auto bg-white rounded-xl shadow-lg dark:bg-slate-900">
     <div>
     <span class="font-bold">
     <%= @item.name %>

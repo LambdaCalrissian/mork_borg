@@ -21,7 +21,12 @@ defmodule MorkBorg.InventoryTest do
     end
 
     test "create_item/1 with valid data creates a item" do
-      valid_attrs = %{action: "some action", count: 42, description: "some description", name: "some name"}
+      valid_attrs = %{
+        action: "some action",
+        count: 42,
+        description: "some description",
+        name: "some name"
+      }
 
       assert {:ok, %Item{} = item} = Inventory.create_item(valid_attrs)
       assert item.action == "some action"
@@ -36,7 +41,13 @@ defmodule MorkBorg.InventoryTest do
 
     test "update_item/2 with valid data updates the item" do
       item = item_fixture()
-      update_attrs = %{action: "some updated action", count: 43, description: "some updated description", name: "some updated name"}
+
+      update_attrs = %{
+        action: "some updated action",
+        count: 43,
+        description: "some updated description",
+        name: "some updated name"
+      }
 
       assert {:ok, %Item{} = item} = Inventory.update_item(item, update_attrs)
       assert item.action == "some updated action"

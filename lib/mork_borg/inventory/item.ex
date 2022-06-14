@@ -7,7 +7,12 @@ defmodule MorkBorg.Inventory.Item do
   schema "items" do
     field :action, :string
     field :count, :integer, default: 1
-    field :count_modifiers, {:array, Ecto.Enum}, values: [:presence, :d4], default: [], virtual: true
+
+    field :count_modifiers, {:array, Ecto.Enum},
+      values: [:presence, :d4],
+      default: [],
+      virtual: true
+
     field :description, :string
     field :name, :string
 

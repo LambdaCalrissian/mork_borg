@@ -4,8 +4,18 @@ defmodule MorkBorgWeb.ItemLiveTest do
   import Phoenix.LiveViewTest
   import MorkBorg.InventoryFixtures
 
-  @create_attrs %{action: "some action", count: 42, description: "some description", name: "some name"}
-  @update_attrs %{action: "some updated action", count: 43, description: "some updated description", name: "some updated name"}
+  @create_attrs %{
+    action: "some action",
+    count: 42,
+    description: "some description",
+    name: "some name"
+  }
+  @update_attrs %{
+    action: "some updated action",
+    count: 43,
+    description: "some updated description",
+    name: "some updated name"
+  }
   @invalid_attrs %{action: nil, count: nil, description: nil, name: nil}
 
   defp create_item(_) do
@@ -43,7 +53,6 @@ defmodule MorkBorgWeb.ItemLiveTest do
 
       assert html =~ "Item created successfully"
       assert html =~ "some action"
-
     end
 
     test "updates item in listing", %{conn: conn, item: item} do
