@@ -10,15 +10,15 @@
     phx-submit="save">
   
     <%= label f, :name %>
-    <%= text_input f, :name %>
+    <%= text_input f, :name, class: "dark:bg-slate-900" %>
     <%= error_tag f, :name %>
   
     <%= label f, :description %>
-    <%= text_input f, :description %>
+    <%= text_input f, :description, class: "dark:bg-slate-900" %>
     <%= error_tag f, :description %>
   
     <%= label f, :damage %>
-    <%= number_input f, :damage %>
+    <%= number_input f, :damage, class: "dark:bg-slate-900" %>
     <%= error_tag f, :damage %>
   
     <div>
