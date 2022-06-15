@@ -73,4 +73,64 @@ defmodule MorkBorg.InventoryTest do
       assert %Ecto.Changeset{} = Inventory.change_item(item)
     end
   end
+
+  describe "armor" do
+    alias MorkBorg.Inventory.Armor
+
+    import MorkBorg.InventoryFixtures
+
+    @invalid_attrs %{description: nil, name: nil, tier: nil}
+
+    test "list_armor/0 returns all armor" do
+      armor = armor_fixture()
+      assert Inventory.list_armor() == [armor]
+    end
+
+    test "get_armor!/1 returns the armor with given id" do
+      armor = armor_fixture()
+      assert Inventory.get_armor!(armor.id) == armor
+    end
+
+    test "create_armor/1 with valid data creates a armor" do
+      valid_attrs = %{description: "some description", name: "some name", current_tier: 42, max_tier: 42}
+
+      assert {:ok, %Armor{} = armor} = Inventory.create_armor(valid_attrs)
+      assert armor.description == "some description"
+      assert armor.name == "some name"
+      assert armor.current_tier == 42
+      assert armor.max_tier == 42
+    end
+
+    test "create_armor/1 with invalid data returns error changeset" do
+      assert {:error, %Ecto.Changeset{}} = Inventory.create_armor(@invalid_attrs)
+    end
+
+    test "update_armor/2 with valid data updates the armor" do
+      armor = armor_fixture()
+      update_attrs = %{description: "some updated description", name: "some updated name", current_tier: 43, max_tier: 43}
+
+      assert {:ok, %Armor{} = armor} = Inventory.update_armor(armor, update_attrs)
+      assert armor.description == "some updated description"
+      assert armor.name == "some updated name"
+      assert armor.current_tier== 43
+      assert armor.max_tier== 43
+    end
+
+    test "update_armor/2 with invalid data returns error changeset" do
+      armor = armor_fixture()
+      assert {:error, %Ecto.Changeset{}} = Inventory.update_armor(armor, @invalid_attrs)
+      assert armor == Inventory.get_armor!(armor.id)
+    end
+
+    test "delete_armor/1 deletes the armor" do
+      armor = armor_fixture()
+      assert {:ok, %Armor{}} = Inventory.delete_armor(armor)
+      assert_raise Ecto.NoResultsError, fn -> Inventory.get_armor!(armor.id) end
+    end
+
+    test "change_armor/1 returns a armor changeset" do
+      armor = armor_fixture()
+      assert %Ecto.Changeset{} = Inventory.change_armor(armor)
+    end
+  end
 end

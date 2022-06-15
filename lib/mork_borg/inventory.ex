@@ -8,6 +8,7 @@ defmodule MorkBorg.Inventory do
 
   alias MorkBorg.Dice
   alias MorkBorg.Inventory.Item
+  alias MorkBorg.Inventory.Armor
   alias MorkBorg.Players.Character
 
   @starter_items_1 [
@@ -89,6 +90,13 @@ defmodule MorkBorg.Inventory do
     %Item{name: "crowbar", description: "d4 damage"},
     %Item{name: "lard", description: "(may function as 5 meals in a pinch)"},
     %Item{name: "tent"}
+  ]
+
+  @starter_armor [
+    %Armor{name: "no armor", current_tier: 0, max_tier: 0},
+    %Armor{name: "light", description: "fur", current_tier: 1, max_tier: 1},
+    %Armor{name: "medium", description: "mail", current_tier: 2, max_tier: 2},
+    %Armor{name: "heavy", description: "plate", current_tier: 3, max_tier: 3}
   ]
 
   @doc """
@@ -209,6 +217,108 @@ defmodule MorkBorg.Inventory do
       end)
 
     Ecto.build_assoc(character, :items, %{item | count: item.count + additional_count})
+    |> Repo.insert!()
+  end
+
+  alias MorkBorg.Inventory.Armor
+
+  @doc """
+  Returns the list of armor.
+
+  ## Examples
+
+      iex> list_armor()
+      [%Armor{}, ...]
+
+  """
+  def list_armor do
+    Repo.all(Armor)
+  end
+
+  @doc """
+  Gets a single armor.
+
+  Raises `Ecto.NoResultsError` if the Armor does not exist.
+
+  ## Examples
+
+      iex> get_armor!(123)
+      %Armor{}
+
+      iex> get_armor!(456)
+      ** (Ecto.NoResultsError)
+
+  """
+  def get_armor!(id), do: Repo.get!(Armor, id)
+
+  @doc """
+  Creates a armor.
+
+  ## Examples
+
+      iex> create_armor(%{field: value})
+      {:ok, %Armor{}}
+
+      iex> create_armor(%{field: bad_value})
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def create_armor(attrs \\ %{}) do
+    %Armor{}
+    |> Armor.changeset(attrs)
+    |> Repo.insert()
+  end
+
+  @doc """
+  Updates a armor.
+
+  ## Examples
+
+      iex> update_armor(armor, %{field: new_value})
+      {:ok, %Armor{}}
+
+      iex> update_armor(armor, %{field: bad_value})
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def update_armor(%Armor{} = armor, attrs) do
+    armor
+    |> Armor.changeset(attrs)
+    |> Repo.update()
+  end
+
+  @doc """
+  Deletes a armor.
+
+  ## Examples
+
+      iex> delete_armor(armor)
+      {:ok, %Armor{}}
+
+      iex> delete_armor(armor)
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def delete_armor(%Armor{} = armor) do
+    Repo.delete(armor)
+  end
+
+  @doc """
+  Returns an `%Ecto.Changeset{}` for tracking armor changes.
+
+  ## Examples
+
+      iex> change_armor(armor)
+      %Ecto.Changeset{data: %Armor{}}
+
+  """
+  def change_armor(%Armor{} = armor, attrs \\ %{}) do
+    Armor.changeset(armor, attrs)
+  end
+
+  def give_starting_armor_to_character(%Character{} = character) do
+    # TODO only can get up to light armor if you have a scroll
+    Ecto.build_assoc(character, :armor, Enum.random(@starter_armor))
     |> Repo.insert!()
   end
 end

@@ -4,6 +4,7 @@ defmodule MorkBorg.Players.Character do
 
   alias MorkBorg.Weapons.Weapon
   alias MorkBorg.Inventory.Item
+  alias MorkBorg.Inventory.Armor
 
   schema "characters" do
     field :agility, :integer
@@ -18,6 +19,7 @@ defmodule MorkBorg.Players.Character do
 
     has_many :weapons, Weapon
     has_many :items, Item
+    has_one :armor, Armor
 
     timestamps()
   end

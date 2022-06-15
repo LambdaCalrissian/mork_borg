@@ -72,6 +72,13 @@
   </div>
 
   <div class="border-t w-full mt-8 p-4">
+  <h2 class="text-lg font-semibold">Armor</h2>
+    <%= if not is_nil(@character.armor) do %>
+      <.display_armor armor={@character.armor} />
+      <% end %>
+  </div>
+
+  <div class="border-t w-full mt-8 p-4">
   <h2 class="text-lg font-semibold">Items</h2>
     <%= for item <- @character.items do %>
       <.display_item item={item} />

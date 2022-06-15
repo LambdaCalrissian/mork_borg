@@ -8,6 +8,7 @@ defmodule MorkBorg.PlayersTest do
 
     import MorkBorg.PlayersFixtures
     import MorkBorg.WeaponsFixtures
+    import MorkBorg.InventoryFixtures
 
     @invalid_attrs %{
       agility: nil,
@@ -27,7 +28,7 @@ defmodule MorkBorg.PlayersTest do
     end
 
     test "get_character!/1 returns the character with given id" do
-      character = %{character_fixture() | weapons: [], items: []}
+      character = %{character_fixture() | weapons: [], items: [], armor: nil}
       assert Players.get_character!(character.id) == character
     end
 
@@ -36,6 +37,21 @@ defmodule MorkBorg.PlayersTest do
       weapon = weapon_fixture_for_chatacter(character)
 
       assert Players.get_character!(character.id).weapons == [weapon]
+    end
+
+    test "get_character/1 returns their items" do
+      character = character_fixture()
+      items = item_fixture_for_character(character)
+
+      assert for item <- Players.get_character!(character.id).items, do: item.name ==
+               for item <- items, do: item.name
+     end
+
+    test "get_character/1 returns their armor" do
+      character = character_fixture()
+      armor = armor_fixture_for_character(character)
+
+      assert Players.get_character!(character.id).armor == armor
     end
 
     test "create_character/1 with valid data creates a character" do
@@ -95,7 +111,7 @@ defmodule MorkBorg.PlayersTest do
     end
 
     test "update_character/2 with invalid data returns error changeset" do
-      character = %{character_fixture() | weapons: [], items: []}
+      character = %{character_fixture() | weapons: [], items: [], armor: nil}
       assert {:error, %Ecto.Changeset{}} = Players.update_character(character, @invalid_attrs)
       assert character == Players.get_character!(character.id)
     end

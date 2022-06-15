@@ -1,0 +1,45 @@
+<h1>Listing Armor</h1>
+
+<%= if @live_action in [:new, :edit] do %>
+  <.modal return_to={Routes.armor_index_path(@socket, :index)}>
+    <.live_component
+      module={MorkBorgWeb.ArmorLive.FormComponent}
+      id={@armor.id || :new}
+      title={@page_title}
+      action={@live_action}
+      armor={@armor}
+      return_to={Routes.armor_index_path(@socket, :index)}
+    />
+  </.modal>
+<% end %>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Current Tier</th>
+      <th>Max Tier</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody id="armor">
+    <%= for armor <- @armor_collection do %>
+      <tr id={"armor-#{armor.id}"}>
+        <td><%= armor.name %></td>
+        <td><%= armor.description %></td>
+        <td><%= armor.current_tier %></td>
+        <td><%= armor.max_tier %></td>
+
+        <td>
+          <span><%= live_redirect "Show", to: Routes.armor_show_path(@socket, :show, armor) %></span>
+          <span><%= live_patch "Edit", to: Routes.armor_index_path(@socket, :edit, armor) %></span>
+          <span><%= link "Delete", to: "#", phx_click: "delete", phx_value_id: armor.id, data: [confirm: "Are you sure?"] %></span>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<span><%= live_patch "New Armor", to: Routes.armor_index_path(@socket, :new) %></span>
