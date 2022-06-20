@@ -10,7 +10,9 @@ defmodule MorkBorg.MixProject do
       compilers: [:gettext] ++ Mix.compilers(),
       start_permanent: Mix.env() == :prod,
       aliases: aliases(),
-      deps: deps()
+      deps: deps(),
+      dialyzer: [flags: [:error_handling, :underspecs], plt_add_deps: :transitive],
+      preferred_cli_env: [check: :test]
     ]
   end
 
@@ -50,7 +52,8 @@ defmodule MorkBorg.MixProject do
       {:gettext, "~> 0.18"},
       {:jason, "~> 1.2"},
       {:plug_cowboy, "~> 2.5"},
-      {:tailwind, "~> 0.1", runtime: Mix.env() == :dev}
+      {:tailwind, "~> 0.1", runtime: Mix.env() == :dev},
+      {:dialyxir, "~> 0.5.0", only: [:dev], runtime: false}
     ]
   end
 
