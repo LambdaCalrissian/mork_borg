@@ -1,5 +1,5 @@
 defmodule MorkBorg.WeaponsFixtures do
-  alias MorkBorg.Weapons
+  alias MorkBorg.Inventory
 
   @moduledoc """
   This module defines test helpers for creating
@@ -17,12 +17,12 @@ defmodule MorkBorg.WeaponsFixtures do
         description: "some description",
         name: "some name"
       })
-      |> Weapons.create_weapon()
+      |> Inventory.create_weapon()
 
     weapon
   end
 
   def weapon_fixture_for_chatacter(char) do
-    Weapons.give_starter_weapon_to_character(char)
+    Inventory.give_starter_weapon_to_character(char)
   end
 end

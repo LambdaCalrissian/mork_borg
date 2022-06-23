@@ -46,6 +46,20 @@ defmodule MorkBorgWeb.Router do
 
     live "/armor/:id", ArmorLive.Show, :show
     live "/armor/:id/show/edit", ArmorLive.Show, :edit
+
+    live "/locations", LocationLive.Index, :index
+    live "/locations/new", LocationLive.Index, :new
+    live "/locations/:id/edit", LocationLive.Index, :edit
+
+    live "/locations/:id", LocationLive.Show, :show
+    live "/locations/:id/show/edit", LocationLive.Show, :edit
+
+    live "/locales", LocaleLive.Index, :index
+    live "/locales/new", LocaleLive.Index, :new
+    live "/locales/:id/edit", LocaleLive.Index, :edit
+
+    live "/locales/:id", LocaleLive.Show, :show
+    live "/locales/:id/show/edit", LocaleLive.Show, :edit
   end
 
   # Other scopes may use custom stacks.

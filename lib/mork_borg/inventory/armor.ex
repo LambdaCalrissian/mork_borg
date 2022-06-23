@@ -3,6 +3,7 @@ defmodule MorkBorg.Inventory.Armor do
   import Ecto.Changeset
 
   alias MorkBorg.Players.Character
+  alias MorkBorg.World.Location
 
   schema "armor" do
     field :description, :string
@@ -10,6 +11,7 @@ defmodule MorkBorg.Inventory.Armor do
     field :current_tier, :integer, default: 0
     field :max_tier, :integer, default: 0
     belongs_to :character, Character
+    belongs_to :location, Location
 
     timestamps()
   end

@@ -1,8 +1,8 @@
 defmodule MorkBorgWeb.WeaponLive.Index do
   use MorkBorgWeb, :live_view
 
-  alias MorkBorg.Weapons
-  alias MorkBorg.Weapons.Weapon
+  alias MorkBorg.Inventory
+  alias MorkBorg.Inventory.Weapon
 
   @impl true
   def mount(_params, _session, socket) do
@@ -17,7 +17,7 @@ defmodule MorkBorgWeb.WeaponLive.Index do
   defp apply_action(socket, :edit, %{"id" => id}) do
     socket
     |> assign(:page_title, "Edit Weapon")
-    |> assign(:weapon, Weapons.get_weapon!(id))
+    |> assign(:weapon, Inventory.get_weapon!(id))
   end
 
   defp apply_action(socket, :new, _params) do
@@ -28,19 +28,19 @@ defmodule MorkBorgWeb.WeaponLive.Index do
 
   defp apply_action(socket, :index, _params) do
     socket
-    |> assign(:page_title, "Listing Weapons")
+    |> assign(:page_title, "Listing Inventory")
     |> assign(:weapon, nil)
   end
 
   @impl true
   def handle_event("delete", %{"id" => id}, socket) do
-    weapon = Weapons.get_weapon!(id)
-    {:ok, _} = Weapons.delete_weapon(weapon)
+    weapon = Inventory.get_weapon!(id)
+    {:ok, _} = Inventory.delete_weapon(weapon)
 
     {:noreply, assign(socket, :weapons, list_weapons())}
   end
 
   defp list_weapons do
-    Weapons.list_weapons()
+    Inventory.list_weapons()
   end
 end

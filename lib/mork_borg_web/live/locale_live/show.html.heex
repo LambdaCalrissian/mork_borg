@@ -1,0 +1,31 @@
+<h1>Show Locale</h1>
+
+<%= if @live_action in [:edit] do %>
+  <.modal return_to={Routes.locale_show_path(@socket, :show, @locale)}>
+    <.live_component
+      module={MorkBorgWeb.LocaleLive.FormComponent}
+      id={@locale.id}
+      title={@page_title}
+      action={@live_action}
+      locale={@locale}
+      return_to={Routes.locale_show_path(@socket, :show, @locale)}
+    />
+  </.modal>
+<% end %>
+
+<ul>
+
+  <li>
+    <strong>Name:</strong>
+    <%= @locale.name %>
+  </li>
+
+  <li>
+    <strong>Description:</strong>
+    <%= @locale.description %>
+  </li>
+
+</ul>
+
+<span><%= live_patch "Edit", to: Routes.locale_show_path(@socket, :edit, @locale), class: "button" %></span> |
+<span><%= live_redirect "Back", to: Routes.locale_index_path(@socket, :index) %></span>

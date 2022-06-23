@@ -1,7 +1,7 @@
-defmodule MorkBorgWeb.WeaponLive.Show do
+defmodule MorkBorgWeb.LocationLive.Show do
   use MorkBorgWeb, :live_view
 
-  alias MorkBorg.Inventory
+  alias MorkBorg.World
 
   @impl true
   def mount(_params, _session, socket) do
@@ -13,9 +13,9 @@ defmodule MorkBorgWeb.WeaponLive.Show do
     {:noreply,
      socket
      |> assign(:page_title, page_title(socket.assigns.live_action))
-     |> assign(:weapon, Inventory.get_weapon!(id))}
+     |> assign(:location, World.get_location!(id))}
   end
 
-  defp page_title(:show), do: "Show Weapon"
-  defp page_title(:edit), do: "Edit Weapon"
+  defp page_title(:show), do: "Show Location"
+  defp page_title(:edit), do: "Edit Location"
 end

@@ -3,6 +3,69 @@ defmodule MorkBorg.InventoryTest do
 
   alias MorkBorg.Inventory
 
+  describe "weapons" do
+    alias MorkBorg.Inventory.Weapon
+
+    import MorkBorg.WeaponsFixtures
+
+    @invalid_attrs %{damage: nil, description: nil, name: nil}
+
+    test "list_weapons/0 returns all weapons" do
+      weapon = weapon_fixture()
+      assert Inventory.list_weapons() == [weapon]
+    end
+
+    test "get_weapon!/1 returns the weapon with given id" do
+      weapon = weapon_fixture()
+      assert Inventory.get_weapon!(weapon.id) == weapon
+    end
+
+    test "create_weapon/1 with valid data creates a weapon" do
+      valid_attrs = %{damage: 42, description: "some description", name: "some name"}
+
+      assert {:ok, %Weapon{} = weapon} = Inventory.create_weapon(valid_attrs)
+      assert weapon.damage == 42
+      assert weapon.description == "some description"
+      assert weapon.name == "some name"
+    end
+
+    test "create_weapon/1 with invalid data returns error changeset" do
+      assert {:error, %Ecto.Changeset{}} = Inventory.create_weapon(@invalid_attrs)
+    end
+
+    test "update_weapon/2 with valid data updates the weapon" do
+      weapon = weapon_fixture()
+
+      update_attrs = %{
+        damage: 43,
+        description: "some updated description",
+        name: "some updated name"
+      }
+
+      assert {:ok, %Weapon{} = weapon} = Inventory.update_weapon(weapon, update_attrs)
+      assert weapon.damage == 43
+      assert weapon.description == "some updated description"
+      assert weapon.name == "some updated name"
+    end
+
+    test "update_weapon/2 with invalid data returns error changeset" do
+      weapon = weapon_fixture()
+      assert {:error, %Ecto.Changeset{}} = Inventory.update_weapon(weapon, @invalid_attrs)
+      assert weapon == Inventory.get_weapon!(weapon.id)
+    end
+
+    test "delete_weapon/1 deletes the weapon" do
+      weapon = weapon_fixture()
+      assert {:ok, %Weapon{}} = Inventory.delete_weapon(weapon)
+      assert_raise Ecto.NoResultsError, fn -> Inventory.get_weapon!(weapon.id) end
+    end
+
+    test "change_weapon/1 returns a weapon changeset" do
+      weapon = weapon_fixture()
+      assert %Ecto.Changeset{} = Inventory.change_weapon(weapon)
+    end
+  end
+
   describe "item" do
     alias MorkBorg.Inventory.Item
 
@@ -112,8 +175,8 @@ defmodule MorkBorg.InventoryTest do
       assert {:ok, %Armor{} = armor} = Inventory.update_armor(armor, update_attrs)
       assert armor.description == "some updated description"
       assert armor.name == "some updated name"
-      assert armor.current_tier== 43
-      assert armor.max_tier== 43
+      assert armor.current_tier == 43
+      assert armor.max_tier == 43
     end
 
     test "update_armor/2 with invalid data returns error changeset" do
