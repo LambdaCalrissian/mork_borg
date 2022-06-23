@@ -1,8 +1,9 @@
-defmodule MorkBorg.Weapons.Weapon do
+defmodule MorkBorg.Inventory.Weapon do
   use Ecto.Schema
   import Ecto.Changeset
 
   alias MorkBorg.Players.Character
+  alias MorkBorg.World.Location
 
   schema "weapons" do
     field :damage, :integer
@@ -10,6 +11,7 @@ defmodule MorkBorg.Weapons.Weapon do
     field :name, :string
 
     belongs_to :character, Character
+    belongs_to :location, Location
 
     timestamps()
   end

@@ -2,9 +2,9 @@ defmodule MorkBorg.Players.Character do
   use Ecto.Schema
   import Ecto.Changeset
 
-  alias MorkBorg.Weapons.Weapon
   alias MorkBorg.Inventory.Item
   alias MorkBorg.Inventory.Armor
+  alias MorkBorg.Inventory.Weapon
   alias MorkBorg.World.Location
 
   schema "characters" do

@@ -1,11 +1,11 @@
 defmodule MorkBorgWeb.WeaponLive.FormComponent do
   use MorkBorgWeb, :live_component
 
-  alias MorkBorg.Weapons
+  alias MorkBorg.Inventory
 
   @impl true
   def update(%{weapon: weapon} = assigns, socket) do
-    changeset = Weapons.change_weapon(weapon)
+    changeset = Inventory.change_weapon(weapon)
 
     {:ok,
      socket
@@ -17,7 +17,7 @@ defmodule MorkBorgWeb.WeaponLive.FormComponent do
   def handle_event("validate", %{"weapon" => weapon_params}, socket) do
     changeset =
       socket.assigns.weapon
-      |> Weapons.change_weapon(weapon_params)
+      |> Inventory.change_weapon(weapon_params)
       |> Map.put(:action, :validate)
 
     {:noreply, assign(socket, :changeset, changeset)}
@@ -28,7 +28,7 @@ defmodule MorkBorgWeb.WeaponLive.FormComponent do
   end
 
   defp save_weapon(socket, :edit, weapon_params) do
-    case Weapons.update_weapon(socket.assigns.weapon, weapon_params) do
+    case Inventory.update_weapon(socket.assigns.weapon, weapon_params) do
       {:ok, _weapon} ->
         {:noreply,
          socket
@@ -41,7 +41,7 @@ defmodule MorkBorgWeb.WeaponLive.FormComponent do
   end
 
   defp save_weapon(socket, :new, weapon_params) do
-    case Weapons.create_weapon(weapon_params) do
+    case Inventory.create_weapon(weapon_params) do
       {:ok, _weapon} ->
         {:noreply,
          socket
