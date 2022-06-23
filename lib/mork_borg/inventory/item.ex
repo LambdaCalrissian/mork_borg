@@ -3,6 +3,7 @@ defmodule MorkBorg.Inventory.Item do
   import Ecto.Changeset
 
   alias MorkBorg.Players.Character
+  alias MorkBorg.World.Location
 
   schema "items" do
     field :action, :string
@@ -17,6 +18,7 @@ defmodule MorkBorg.Inventory.Item do
     field :name, :string
 
     belongs_to :character, Character
+    belongs_to :location, Location
 
     timestamps()
   end
